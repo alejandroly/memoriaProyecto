@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Category from './components/Categorias/Category'
 import News from './components/Noticias/News'
+import Cursos from './components/Cursos/Cursos'
 import logo from './logo.svg';
 import  { addCategory, selectCategory} from './reducers/Categorias'
 import  { addNews , resetNews} from './reducers/Noticias'
@@ -37,6 +38,7 @@ class App extends Component {
 
     return (
       <div className="App">
+        <Cursos cursos={cursos}/>
         <Category selectCategory={selectCategory}
                   addCategory={addCategory}
                   categories={categories} />
