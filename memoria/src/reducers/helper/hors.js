@@ -33,9 +33,19 @@ export const delReducer = ({ START , SUCCESS , ERROR}) => ({
 })
 
 export const selReducer = ({ START , SUCCESS , ERROR}) => ({
-  [START]: state => ({...state, creating: true}),
+  [START]: state => ({...state, selecting: true}),
   [SUCCESS]: (state, { payload }) => {
     return   {...state, selected: payload}
   },
-  [ERROR]: (state, { error }) => ({...state,error ,creating: false})
+  [ERROR]: (state, { error }) => ({...state,error ,selecting: false})
+})
+
+export const resetReducer = ({ START , SUCCESS , ERROR}) => ({
+  [START]: state => ({...state, reset: true}),
+  [SUCCESS]: state => {
+    return   {...state, data: [
+          {id:1, name: 'Defecto'},
+        ]}
+  },
+  [ERROR]: (state, { error }) => ({...state,error ,reset: false})
 })

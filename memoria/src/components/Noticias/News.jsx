@@ -4,6 +4,10 @@ import NewsList from './NewsList'
 
 export default class News extends Component {
 
+  reset = () => {
+    const { resetNews } = this.props
+    resetNews()
+  }
   handleSubmit = payload => {
     const { addNews, selectCategory } = this.props
     addNews({...payload, category_id: selectCategory})
@@ -14,6 +18,7 @@ export default class News extends Component {
     return (
       <div>
         <NewsForm  onSubmit={this.handleSubmit}/>
+        <button onClick={this.reset}> Limpiar Noticias</button>
         <NewsList news={news}/>
       </div>
 

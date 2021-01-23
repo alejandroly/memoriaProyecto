@@ -12,6 +12,8 @@ import './index.css';
 import * as reducers from './reducers'
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Navbar from './components/etiquetas/Navbar'
+
 
 //primero todas las funcoones a despachar se las manda a thunk, luego si no pasa na a asyncmiddleware, asi ....
 
@@ -39,6 +41,7 @@ const history =  createBrowserHistory()
 ReactDOM.render(
     <Provider store={store}>
       <Router history={history}>
+        <Navbar />
         <Route exact path="/" component={App}/>
         <Route exact path="/users" component={App2}/>
       </Router>

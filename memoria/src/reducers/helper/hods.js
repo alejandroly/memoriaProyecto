@@ -1,7 +1,7 @@
 //HIGH ORDERS DUCKS
 
 import {makeType,asyncMac,createReducer, reduceReducers } from './duck-helper'
-import { fetchReducer, addReducer, delReducer, selReducer } from './hors'
+import { fetchReducer, addReducer, delReducer, selReducer , resetReducer} from './hors'
 
 export const crudHOD = reducer => {
 
@@ -10,10 +10,12 @@ export const crudHOD = reducer => {
   const ADD = t('add',true)
   const DEL = t('del',true)
   const SEL = t('sel',true)
+  const RESET = t('reset',true)
   const fetchAC = asyncMac(FETCH)
   const addAC = asyncMac(ADD)
   const delAC = asyncMac(DEL)
   const selAC = asyncMac(SEL)
+  const resetAC = asyncMac(RESET)
 
   const initialState = {
     data: [
@@ -29,6 +31,7 @@ export const crudHOD = reducer => {
   const r2 =  createReducer(initialState, addReducer(ADD))
   const r3 =  createReducer(initialState, delReducer(DEL))
   const r4 =  createReducer(initialState, selReducer(SEL))
+  const r5 =  createReducer(initialState, resetReducer(RESET))
 
 
 
@@ -64,10 +67,20 @@ export const crudHOD = reducer => {
       return payload
     }
   })
+
+  const reset = () =>({
+    actions: resetAC,
+    request: () => {
+      return 'Reset Completado'
+    }
+  })
+
+
   return{
-    reducer: reduceReducers(r1,r2,r3,r4),
+    reducer: reduceReducers(r1,r2,r3,r4,r5),
     add,
     sel,
+    reset,
   }
 
 }
